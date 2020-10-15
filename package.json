@@ -1,0 +1,24 @@
+{
+  "name": "book-service",
+  "version": "1.0.0",
+  "description": "A REST based book microservice to handle CRUD operations on book entity.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node index.js",
+    "start:debug": "node --inspect-brk=0.0.0.0:9229 index.js",
+    "compose-down": "docker-compose down",
+    "compose-prep": "npm run compose-down && docker-compose up -d book-db",
+    "compose-up": "npm run build && docker-compose up book-service"
+  },
+  "dependencies": {
+    "@types/node": "^12.7.5",
+    "@types/pg": "^7.14.5",
+    "pg": "^8.4.1",
+    "typescript": "3.8.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

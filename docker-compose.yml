@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  book-db:
+    image: postgres
+    container_name: book-db
+    restart: always
+    environment:
+      POSTGRES_DB: BookDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - "./src/db/scripts:/docker-entrypoint-initdb.d/"
+    ports:
+      - "54533:54532"
+
+  book-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    container_name: book-service
+    environment:
+      DEBUG: "true"
+      START_MODE: "code" # code or ut or none
+    command: |
+      bash -c 'cd /usr/src/book-service &&
+      node formatLineEndings.js &&
+      bash .sh/start.sh'
+    volumes:
+      - "./:/usr/src/book-service/"
+    ports:
+      - "8080:8080"
+      - "9229:9229"
