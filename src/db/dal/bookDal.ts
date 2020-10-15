@@ -1,14 +1,14 @@
-import * as pg from "pg";
+import { Client } from "pg";
 import { config } from "../../config";
 import { BookBo } from "../model";
 import {BookQueryBuilder} from "./queryBuilder";
 import {pgHelper} from "./pgHelper";
 
-class BookDal {
-    pgClient: pg.Client;
+export class BookDal {
+    pgClient: Client;
 
     constructor() {
-        this.pgClient = new pg.Client(config.db);
+        this.pgClient = new Client(config.db);
     }
 
     async insert(book: BookBo): Promise<boolean> {

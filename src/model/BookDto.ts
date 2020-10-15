@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 export default class BookDto {
     id?: number;
     author?: string;

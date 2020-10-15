@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">27.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>3/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">27.27% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>3/11</span>
             </div>
         
             
@@ -54,7 +54,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -79,16 +79,16 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -96,17 +96,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const QueryBuilder_1 = require("./QueryBuilder");
 class InsertBookQueryBuilder extends QueryBuilder_1.QueryBuilder {
-    constructor() {
-        super();
-        this.queryFormat = `INSERT into public."Book" ("Author", "Isbn", "ReleaseDate", "Title") values ([Author], [Isbn], [ReleaseDate], [Title])`;
-        this.query = this.queryFormat;
+<span class="fstat-no" title="function not covered" >    co</span>nstructor() {
+<span class="cstat-no" title="statement not covered" >        super();</span>
+<span class="cstat-no" title="statement not covered" >        this.queryFormat = `INSERT into public."Book" ("Author", "Isbn", "ReleaseDate", "Title") values ([Author], [Isbn], [ReleaseDate], [Title])`;</span>
+<span class="cstat-no" title="statement not covered" >        this.query = this.queryFormat;</span>
     }
-    withValues(values) {
-        this.query = this.query.replace("[Author]", `'${values.Author}'`);
-        this.query = this.query.replace("[Isbn]", `${values.Isbn}`);
-        this.query = this.query.replace("[ReleaseDate]", values.ReleaseDate ? `'${values.ReleaseDate}'` : <span class="branch-1 cbranch-no" title="branch not covered" >`NULL`)</span>;
-        this.query = this.query.replace("[Title]", `'${values.Title}'`);
-        return this;
+<span class="fstat-no" title="function not covered" >    wi</span>thValues(values) {
+<span class="cstat-no" title="statement not covered" >        this.query = this.query.replace("[Author]", `'${values.Author}'`);</span>
+<span class="cstat-no" title="statement not covered" >        this.query = this.query.replace("[Isbn]", `${values.Isbn}`);</span>
+<span class="cstat-no" title="statement not covered" >        this.query = this.query.replace("[ReleaseDate]", values.ReleaseDate ? `'${values.ReleaseDate}'` : `NULL`);</span>
+<span class="cstat-no" title="statement not covered" >        this.query = this.query.replace("[Title]", `'${values.Title}'`);</span>
+<span class="cstat-no" title="statement not covered" >        return this;</span>
     }
 }
 exports.InsertBookQueryBuilder = InsertBookQueryBuilder;
@@ -117,7 +117,7 @@ exports.InsertBookQueryBuilder = InsertBookQueryBuilder;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Oct 15 2020 04:33:33 GMT+0000 (Coordinated Universal Time)
+                at Thu Oct 15 2020 11:04:29 GMT+0000 (Coordinated Universal Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile.local
     container_name: book-service
     environment:
-      DEBUG: "false"
+      DEBUG: "true"
       START_MODE: "ut" # code or ut or none
     command: |
       bash -c 'cd /usr/src/book-service &&

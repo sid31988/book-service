@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { config, Config } from "../../config";
 import * as pg from "pg";
 

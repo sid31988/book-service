@@ -18,8 +18,4 @@ export class UpdateBookQueryBuilder extends QueryBuilder {
         this.query = this.query.replace("[whereClause]", `WHERE ${whereClause}`);
         return this;
     }
-    withoutWhereClause() {
-        this.query = this.query.replace("[whereClause]", "");
-        return this;
-    }
 }

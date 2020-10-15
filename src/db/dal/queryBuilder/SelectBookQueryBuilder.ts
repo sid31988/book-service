@@ -12,9 +12,7 @@ export class SelectBookQueryBuilder extends QueryBuilder {
         include.Isbn && columns.push(`Isbn`);
         include.ReleaseDate && columns.push(`ReleaseDate`);
         include.Title && columns.push(`Title`);
-        this.query = columns.length > 0
-            ? this.query.replace("[columns]", `"${columns.join("\", \"")}"`)
-            : this.query.replace("[columns]", `1`);
+        this.query = this.query.replace("[columns]", `"${columns.join("\", \"")}"`);
         return this;
     }
     withAllColumns() {

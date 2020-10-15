@@ -11,7 +11,7 @@
     "start:debug": "node --inspect-brk=0.0.0.0:9229 index.js",
     "compose-down": "docker-compose down",
     "compose-prep": "npm run compose-down && docker-compose up -d book-db",
-    "compose-up": "docker-compose up book-service"
+    "compose-up": "npm run build && docker-compose up book-service"
   },
   "dependencies": {
     "@types/node": "^12.7.5",
