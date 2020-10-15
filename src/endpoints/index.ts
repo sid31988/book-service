@@ -1,6 +1,8 @@
 import * as http from "http";
 import { IRestCallable } from "./EndpointHandlers";
-import { bookService, ServiceResult, ValidationType } from "../bookService";
+import { ServiceResult } from "../ServiceResult";
+import { ValidationType } from "../validator";
+import { bookService } from "../bookService";
 import { RestResponse } from "../RestResponse";
 import { BookDto } from "../model";
 export * from "./HttpMethods";
@@ -15,7 +17,7 @@ class BookEndpoints implements IRestCallable {
             }
             isbn = Number(isbn);
             let serviceResult = await bookService.delete(isbn);
-            this.handleDeleteResult(res, serviceResult);
+            BookEndpoints.handleDeleteResult(res, serviceResult);
             console.log(`${req.method}: ${req.url}: Handled`);
         }
         catch (ex) {
@@ -24,7 +26,7 @@ class BookEndpoints implements IRestCallable {
         }
     }
 
-    private handleDeleteResult(res: http.ServerResponse, serviceResult: ServiceResult<boolean>) {
+    private static handleDeleteResult(res: http.ServerResponse, serviceResult: ServiceResult<boolean>) {
         if (serviceResult.isValid)
             RestResponse.Success.apply(res, "Success");
 
@@ -45,7 +47,7 @@ class BookEndpoints implements IRestCallable {
             }
             else {
                 let serviceResult = await bookService.find(isbn);
-                this.handleFindResult(res, serviceResult);
+                BookEndpoints.handleFindResult(res, serviceResult);
             }
             console.log(`${req.method}: ${req.url}: Handled`);
         }
@@ -55,7 +57,7 @@ class BookEndpoints implements IRestCallable {
         }
     }
 
-    private handleFindResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto | undefined>) {
+    private static handleFindResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto | undefined>) {
         if (serviceResult.isValid)
             if (serviceResult.data)
                 RestResponse.Success.apply(res, serviceResult.data);
@@ -71,7 +73,7 @@ class BookEndpoints implements IRestCallable {
             try {
                 let book = JSON.parse(chunk.toString()) as BookDto;
                 let serviceResult = await bookService.insert(book);
-                this.handleInsertResult(res, serviceResult);
+                BookEndpoints.handleInsertResult(res, serviceResult);
                 console.log(`${req.method}: ${req.url}: Handled`);
             }
             catch (ex) {
@@ -81,7 +83,7 @@ class BookEndpoints implements IRestCallable {
         });
     }
 
-    private handleInsertResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto>) {
+    private static handleInsertResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto>) {
         if (serviceResult.isValid)
             RestResponse.Success.apply(res, serviceResult.data);
 
@@ -94,7 +96,7 @@ class BookEndpoints implements IRestCallable {
             try {
                 let book = JSON.parse(chunk.toString()) as BookDto;
                 let serviceResult = await bookService.update(book);
-                this.handleUpdateResult(res, serviceResult);
+                BookEndpoints.handleUpdateResult(res, serviceResult);
                 console.log(`${req.method}: ${req.url}: Handled`);
             }
             catch (ex) {
@@ -104,7 +106,7 @@ class BookEndpoints implements IRestCallable {
         });
     }
 
-    private handleUpdateResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto>) {
+    private static handleUpdateResult(res: http.ServerResponse, serviceResult: ServiceResult<BookDto>) {
         if (serviceResult.isValid)
             RestResponse.Success.apply(res, serviceResult.data);
 

@@ -1,6 +1,7 @@
 import { config } from "../../src/config";
 import * as assert from "assert";
-import { bookService, ValidationType } from "../../src/bookService";
+import { bookService } from "../../src/bookService";
+import { ValidationType } from "../../src/validator";
 import { BookDto } from "../../src/model";
 import { bookBos, bookDtos } from "../test-data";
 import { MockHelper } from "../helpers";
@@ -35,7 +36,7 @@ describe("On successful PUT request", () => {
         let book = { ...bookDtos[0] } as BookDto;
         book.isbn = undefined;
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let invalidResults = actual.validationResults.filter(x => x.fieldName === "Isbn" && x.type === ValidationType.Mandatory && !x.isValid);
         assert.strictEqual(invalidResults.length > 0, true);
         mockedPgQuery.restore();
@@ -44,7 +45,7 @@ describe("On successful PUT request", () => {
         let book = { ...bookDtos[0] } as BookDto;
         book.isbn = "invalid" as unknown as number;
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let invalidResults = actual.validationResults.filter(x => x.fieldName === "Isbn" && x.type === ValidationType.Numeric && !x.isValid);
         assert.strictEqual(invalidResults.length > 0, true);
         mockedPgQuery.restore();
@@ -53,7 +54,7 @@ describe("On successful PUT request", () => {
         let book = { ...bookDtos[0] } as BookDto;
         book.title = undefined;
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let invalidResults = actual.validationResults.filter(x => x.fieldName === "Title" && x.type === ValidationType.Mandatory && !x.isValid);
         assert.strictEqual(invalidResults.length > 0, true);
         mockedPgQuery.restore();
@@ -62,7 +63,7 @@ describe("On successful PUT request", () => {
         let book = { ...bookDtos[0] } as BookDto;
         book.releaseDate = "invalid";
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let invalidResults = actual.validationResults.filter(x => x.fieldName === "ReleaseDate" && x.type === ValidationType.Date && !x.isValid);
         assert.strictEqual(invalidResults.length > 0, true);
         mockedPgQuery.restore();
@@ -71,7 +72,7 @@ describe("On successful PUT request", () => {
         let book = { ...bookDtos[0] } as BookDto;
         book.releaseDate = 1234 as unknown as string;
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let invalidResults = actual.validationResults.filter(x => x.fieldName === "ReleaseDate" && x.type === ValidationType.Date && !x.isValid);
         assert.strictEqual(invalidResults.length > 0, true);
         mockedPgQuery.restore();
@@ -81,7 +82,7 @@ describe("On successful PUT request", () => {
         let title = book.title!;
         book.title = `<${title!}>`;
         let mockedPgQuery = MockHelper.mockPgQuery({ rowCount: 1, rows: [bookBos[0]] });
-        let actual = await bookService.insert(book);
+        let actual = await bookService.update(book);
         let expected: BookDto = { ...book, resource: `${config.rest.baseUrl}/books/${book.isbn}` };
         expected.title = `&lt;${title}&gt;`;
         assert.deepStrictEqual(actual.data, expected);

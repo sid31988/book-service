@@ -21,7 +21,7 @@ services:
     container_name: book-service
     environment:
       DEBUG: "true"
-      START_MODE: "ut" # code or ut or none
+      START_MODE: "code" # code or ut or none
     command: |
       bash -c 'cd /usr/src/book-service &&
       node formatLineEndings.js &&
