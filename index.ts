@@ -1,1 +1,1 @@
-export * from "./bin/www";
+import "./bin/www";

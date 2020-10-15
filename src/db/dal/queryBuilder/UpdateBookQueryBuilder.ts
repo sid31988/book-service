@@ -1,7 +1,7 @@
 import { BookBo } from "../../model";
-import { BookQueryBuilder } from "./BookQueryBuilder";
+import { QueryBuilder } from "./QueryBuilder";
 
-export class UpdateBookQueryBuilder extends BookQueryBuilder {
+export class UpdateBookQueryBuilder extends QueryBuilder {
     readonly queryFormat: string = `UPDATE public."Book" set "Author" = [Author], "Isbn" = [Isbn], "ReleaseDate" = [ReleaseDate], "Title" = [Title] [whereClause]`;
     constructor() {
         super();

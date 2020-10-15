@@ -1,7 +1,7 @@
-import { BookQueryBuilder } from "./BookQueryBuilder";
+import { QueryBuilder } from "./QueryBuilder";
 import { BookBo } from "../../model";
 
-export class InsertBookQueryBuilder extends BookQueryBuilder {
+export class InsertBookQueryBuilder extends QueryBuilder {
     readonly queryFormat: string = `INSERT into public."Book" ("Author", "Isbn", "ReleaseDate", "Title") values ([Author], [Isbn], [ReleaseDate], [Title])`;
     constructor() {
         super();

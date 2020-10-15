@@ -6,16 +6,22 @@ export class BookMapper {
         return {
             Author: dto.author,
             Isbn: dto.isbn,
-            ReleaseDate: dto.releaseDate,
+            ReleaseDate: dto.releaseDate!,
             Title: dto.title
         };
     }
 
     public static transformToDto(bo: BookBo): BookDto {
+        let releaseDate: string | undefined = undefined;
+        if (bo.ReleaseDate instanceof Date)
+            releaseDate = bo.ReleaseDate.toISOString();
+        else
+            releaseDate = bo.ReleaseDate;
+
         return {
             author: bo.Author,
             isbn: bo.Isbn,
-            releaseDate: bo.ReleaseDate,
+            releaseDate: releaseDate,
             title: bo.Title
         };
     }

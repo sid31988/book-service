@@ -3,7 +3,7 @@ export default class BookDto {
     author?: string;
     title?: string;
     isbn?: number;
-    releaseDate?: number;
+    releaseDate?: string;
     resource?: string;
 
     constructor() {

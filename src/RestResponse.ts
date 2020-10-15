@@ -16,14 +16,20 @@ export class RestResponse {
     toString() {
         return JSON.stringify(this);
     }
+
     public apply(res: http.ServerResponse, str?: string | object, doEnd: boolean = true) {
         res.statusCode = this.code!;
-        str = str || this;
-        if (str && typeof str === "object")
-            str = JSON.stringify(str);
+        let jsonStr = JSON.stringify(this.normalize(str));
         res.setHeader("Content-Type", "application/json");
-        res.write(str);
+        res.write(jsonStr);
         if (doEnd) res.end();
+    }
+
+    public normalize(str?: string | object): object {
+        if (typeof str === "object")
+            return str;
+        if (str !== undefined) this.message = str;
+        return this;
     }
 
     static BadRequest = RestResponse.create(400, "Bad Request");

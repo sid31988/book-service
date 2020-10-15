@@ -3,7 +3,7 @@ export class BookBo {
     Author?: string;
     Title?: string;
     Isbn?: number;
-    ReleaseDate?: number;
+    ReleaseDate?: Date | string;
 
     constructor() {
         this.Author = undefined;

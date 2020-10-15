@@ -4,21 +4,32 @@
   "description": "A REST based book microservice to handle CRUD operations on book entity.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc --reporter=html --reporter=text-summary --reporter=text mocha ./unit-test/tests/*.test.js",
+    "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/mocha/bin/mocha ./unit-test/tests/*.test.js",
     "build": "tsc",
     "start": "node index.js",
     "start:debug": "node --inspect-brk=0.0.0.0:9229 index.js",
     "compose-down": "docker-compose down",
     "compose-prep": "npm run compose-down && docker-compose up -d book-db",
-    "compose-up": "npm run build && docker-compose up book-service"
+    "compose-up": "docker-compose up book-service"
   },
   "dependencies": {
     "@types/node": "^12.7.5",
     "@types/pg": "^7.14.5",
+    "@types/mocha": "^5.2.7",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
     "pg": "^8.4.1",
     "typescript": "3.8.3"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "nyc": {
+    "check-coverage": true,
+    "functions": 80,
+    "branches": 80,
+    "lines": 80,
+    "statements": 80
+  }
 }

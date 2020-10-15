@@ -4,8 +4,6 @@ import { UpdateBookQueryBuilder } from "./UpdateBookQueryBuilder";
 import { DeleteBookQueryBuilder } from "./DeleteBookQueryBuilder";
 
 export class BookQueryBuilder {
-    query!: string;
-
     public static select(): SelectBookQueryBuilder {
         return new SelectBookQueryBuilder();
     }
@@ -20,9 +18,5 @@ export class BookQueryBuilder {
 
     public static delete(): DeleteBookQueryBuilder {
         return new DeleteBookQueryBuilder();
-    }
-
-    public build(): string {
-        return this.query;
     }
 } 

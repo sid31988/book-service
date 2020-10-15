@@ -1,6 +1,6 @@
-import { BookQueryBuilder } from "./BookQueryBuilder";
+import { QueryBuilder } from "./QueryBuilder";
 
-export class SelectBookQueryBuilder extends BookQueryBuilder {
+export class SelectBookQueryBuilder extends QueryBuilder {
     readonly queryFormat: string = `SELECT [columns] from public."Book" [whereClause]`;
     constructor() {
         super();

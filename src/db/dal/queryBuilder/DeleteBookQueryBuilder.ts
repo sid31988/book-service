@@ -1,6 +1,6 @@
-import { BookQueryBuilder } from "./BookQueryBuilder";
+import { QueryBuilder } from "./QueryBuilder";
 
-export class DeleteBookQueryBuilder extends BookQueryBuilder {
+export class DeleteBookQueryBuilder extends QueryBuilder {
     readonly queryFormat: string = `Delete from public."Book" [whereClause]`;
     constructor() {
         super();
